@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_menu">30sp</dimen>
+    <dimen name="font_soal">20sp</dimen>
+    <dimen name="font_jwbn">18sp</dimen>
+    <dimen name="icon_menu">190sp</dimen>
+</resources>
