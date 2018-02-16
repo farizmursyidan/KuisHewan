@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -13,7 +14,8 @@ import android.widget.Toast;
 public class PracticeActivity extends AppCompatActivity {
 
     //membuat variabel baru sesuai tipe
-    TextView mtvSkor, mtvSoal;
+    TextView mtvSkor;
+    ImageView mtvSoal;
     RadioGroup mrgPilihanJawaban;
     RadioButton mrbPilihanJawaban1, mrbPilihanJawaban2, mrbPilihanJawaban3;
     Button mbtnSubmit;
@@ -30,12 +32,10 @@ public class PracticeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Quiz");
 
         //menyambungkan antara variabel KuisPilihanGanda.java dengan id activity_kuis_pilihan_ganda
         mtvSkor = (TextView) findViewById(R.id.tvSkor);
-        mtvSoal = (TextView) findViewById(R.id.tvSoal);
+        mtvSoal = (ImageView) findViewById(R.id.tvSoal);
         mrgPilihanJawaban = (RadioGroup) findViewById(R.id.rgPilihanJawaban);
         mrbPilihanJawaban1 = (RadioButton) findViewById(R.id.rbPilihanJawaban1);
         mrbPilihanJawaban2 = (RadioButton) findViewById(R.id.rbPilihanJawaban2);
@@ -98,6 +98,8 @@ public class PracticeActivity extends AppCompatActivity {
 
     }
 
+
+
     private void setKonten() {
         mrgPilihanJawaban.clearCheck();
         arr = soalPG.pertanyaan.length;
@@ -113,7 +115,7 @@ public class PracticeActivity extends AppCompatActivity {
             startActivity(i);
         }else{
             //setting text dengan mengambil text dari method getter di kelas SoalPilihanGanda
-            mtvSoal.setText(soalPG.getPertanyaan(x));
+            mtvSoal.setImageResource(soalPG.getPertanyaan(x));
             mrbPilihanJawaban1.setText(soalPG.getPilihanJawaban1(x));
             mrbPilihanJawaban2.setText(soalPG.getPilihanJawaban2(x));
             mrbPilihanJawaban3.setText(soalPG.getPilihanJawaban3(x));
@@ -126,47 +128,50 @@ public class PracticeActivity extends AppCompatActivity {
     public class SoalPilihanGanda {
 
         //membuat array untuk pertanyaan
-        public String pertanyaan[] = {
-                "Siapa nama presiden Indonesia yang pertama ?",
-                "Ideologi dasar bagi negara Indonesia adalah ...",
-                "Bhinneka Tunggal Ika mempunyai arti ...",
-                "Ibukota negara Indonesia saat ini adalah ...",
-                "Siapa yang menjajah Indonesia selama 350 tahun ?",
-                "Saat masa penjajahan, senjata yang biasa digunakan oleh pahlawan Indonesia adalah ...",
-                "Monumen untuk mengenang perlawanan dan perjuanagan rakyat Indonesia untuk merebut kemerdekaan dari pemerintahan kolonial Hindia Belanda adalah ...",
-                "Teks yang dibacakan Ir. Soekarno yang menyatakan Indonesia merdeka dalah teks ...",
-                "Pulau terbesar di Indonesia adalah ...",
+        public int pertanyaan[] = {
+                R.drawable.elephant,
+                R.drawable.giraffe,
+                R.drawable.zebra,
+                R.drawable.lion,
+                R.drawable.monkey,
+                R.drawable.hippopotamus,
+                R.drawable.wolf,
+                R.drawable.bulldog,
+                R.drawable.squirrel,
+                R.drawable.mouse,
         };
 
         //membuat array untuk pilihan jawaban
         private String pilihanJawaban[][] = {
-                {"Ir. Soekarno","Joko Widodo","Susilo Bambang Yudhoyono"},
-                {"UUD 1945","Pancasila","Bhinneka Tunggal Ika"},
-                {"Berbeda-beda tetapi tetap satu","Bersama selamanya","Bersatu teguh bercerai runtuh"},
-                {"Semarang","Surabaya","Jakarta"},
-                {"Jepang","Belanda","Malaysia"},
-                {"Bambu runcing","Ketapel","Shotgun"},
-                {"Tugu Muda","Patung Pancoran","Monas"},
-                {"Proklamasi","Pancasila","Pembukaan UUD 1945"},
-                {"Jawa","Sumatera","Kalimantan"},
+                {"Serigala","Gajah","Tikus"},
+                {"Jerapah","Zebra","Monyet"},
+                {"Singa","Tupai","Zebra"},
+                {"Kuda Nil","Singa","Serigala"},
+                {"Gajah","Monyet","Anjing"},
+                {"Kuda Nil","Anjing","Gajah"},
+                {"Tupai","Singa","Serigala"},
+                {"Anjing","Monyet","Jerapah"},
+                {"Tikus","Tupai","Kuda Nil"},
+                {"Tikus","Jerapah","Gajah"},
         };
 
         //membuat array untuk jawaban benar
         private String jawabanBenar[] = {
-                "Ir. Soekarno",
-                "Pancasila",
-                "Berbeda-beda tetapi tetap satu",
-                "Jakarta",
-                "Belanda",
-                "Bambu runcing",
-                "Monas",
-                "Proklamasi",
-                "Kalimantan",
+                "Gajah",
+                "Jerapah",
+                "Zebra",
+                "Singa",
+                "Monyet",
+                "Kuda Nil",
+                "Serigala",
+                "Anjing",
+                "Tupai",
+                "Tikus",
         };
 
         //membuat getter untuk mengambil pertanyaan
-        public String getPertanyaan(int x){
-            String soal = pertanyaan[x];
+        public int getPertanyaan(int x){
+            int soal = pertanyaan[x];
             return soal;
         }
 
