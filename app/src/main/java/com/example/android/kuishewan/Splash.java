@@ -8,6 +8,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+//splash screen
+
 public class Splash extends AppCompatActivity {
 private TextView tv;
 private ImageView iv;
